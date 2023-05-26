@@ -74,7 +74,7 @@ app.post("/login",(req,res)=>{
 app.get("/checklogin",(req,res)=>{
     const ipAddress = req.socket.remoteAddress;
     if(ipAddress in arrIp){
-        res.send({loggedin: true})
+        res.send({loggedin: true, username: getUsername(req.ip)})
     } else {
         res.send({loggedin: false})
     }
