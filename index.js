@@ -85,7 +85,7 @@ app.get("/getContactList",(req,res)=>{
     const ipAddress = req.socket.remoteAddress
     if(ipAddress in arrIp){
         const username = getUsername(ipAddress)
-        const otherUsers = []
+        let otherUsers = []
         regUsers.forEach((value)=>{
             if(value===username){
                 
