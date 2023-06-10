@@ -81,6 +81,26 @@ app.get("/checklogin",(req,res)=>{
     res.end();
 })
 
+app.get("/getContactList",(req,res)=>{
+    const ipAddress = req.socket.remoteAddress
+    if(ipAddress in arrIp){
+        const username = getUsername(ipAddress)
+        const otherUsers = []
+        regUsers.forEach((value)=>{
+            if(value===username){
+                
+            } else {
+                otherUsers.push(value)
+            }
+        })
+        console.log("List of contacts are: ",otherUsers)
+        res.send(otherUsers)
+        res.end()
+    } else {
+        res.send("You are not logged in")
+    }
+})
+
 
 // Handling socket
 io.on('connection',(socket)=>{
@@ -121,6 +141,5 @@ function saveUserSocket(socket){
 }
 
 function getUsername(ip){
-    console.log("Username for the ip address is: ", arrIp[ip])
     return arrIp[ip];
 }
