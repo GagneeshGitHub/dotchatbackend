@@ -53,6 +53,7 @@ app.get("/logoutme",(req,res)=>{
 })
 
 app.post("/login",(req,res)=>{
+    console.log("The login is called")
     console.log(".......  ",req.body);
     const username = req.body.username;
     const password = req.body.password;
@@ -104,6 +105,7 @@ app.get("/getContactList",(req,res)=>{
 
 // Handling socket
 io.on('connection',(socket)=>{
+    console.log("Socket is connected successfully")
     saveUserSocket(socket)
     socket.on("sendMessage",(arg)=>{
         // socket.emit(arg.otherUser,{ message: arg.message})
